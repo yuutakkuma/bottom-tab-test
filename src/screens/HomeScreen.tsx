@@ -1,12 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useSetRecoilState } from 'recoil';
+// atoms
+import { showBottomTabBarAtom } from '../recoil/atoms/showBottomTabAtom';
+// navigation
 import { HomeStackScreenProps } from '../navigation/stacks/homeStack/type';
 
 export function HomeScreen() {
   const navigation = useNavigation<HomeStackScreenProps['navigation']>();
+  // recoil
+  const setShowBottomTabBar = useSetRecoilState(showBottomTabBarAtom);
 
   const newsScreenNavigation = () => {
+    setShowBottomTabBar(false);
     navigation.navigate('NewsScreen');
   };
 

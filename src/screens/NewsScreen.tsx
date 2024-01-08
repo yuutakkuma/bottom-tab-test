@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useSetRecoilState } from 'recoil';
+// atoms
+import { showBottomTabBarAtom } from '../recoil/atoms/showBottomTabAtom';
 
 export function NewsScreen() {
+  // recoil
+  const setShowBottomTabBar = useSetRecoilState(showBottomTabBarAtom);
+
+  useEffect(() => {
+    return () => {
+      setShowBottomTabBar(true);
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.name}>News screen.</Text>
