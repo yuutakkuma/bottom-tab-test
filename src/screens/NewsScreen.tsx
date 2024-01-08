@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { useSetRecoilState } from 'recoil';
 // atoms
 import { showBottomTabBarAtom } from '../recoil/atoms/showBottomTabAtom';
@@ -10,7 +10,9 @@ export function NewsScreen() {
 
   useEffect(() => {
     return () => {
-      setShowBottomTabBar(true);
+      if (Platform.OS === 'android') {
+        setShowBottomTabBar(true);
+      }
     };
   }, []);
 

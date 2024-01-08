@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSetRecoilState } from 'recoil';
 // atoms
@@ -13,7 +19,9 @@ export function HomeScreen() {
   const setShowBottomTabBar = useSetRecoilState(showBottomTabBarAtom);
 
   const newsScreenNavigation = () => {
-    setShowBottomTabBar(false);
+    if (Platform.OS === 'android') {
+      setShowBottomTabBar(false);
+    }
     navigation.navigate('NewsScreen');
   };
 
